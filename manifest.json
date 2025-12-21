@@ -1,0 +1,23 @@
+{
+  "name": "G-ZONE ESPORTS",
+  "short_name": "G-ZONE",
+  "start_url": "app.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "description": "Play & Earn Money - Esports Platform",
+  "icons": [
+    {
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAQtXn2gmgLcg4A-wuYXv-lPw7mZ3KXSUcIFVFSDy0NNqqU8bSc5gVAoqE&s=10",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAQtXn2gmgLcg4A-wuYXv-lPw7mZ3KXSUcIFVFSDy0NNqqU8bSc5gVAoqE&s=10",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "gcm_sender_id": "103953800507"
+}

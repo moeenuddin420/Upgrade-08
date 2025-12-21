@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>G-ZONE ESPORTS - ইন্সটল করুন</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root { --bg-dark: #0f172a; --primary: #06b6d4; --primary-glow: rgba(6, 182, 212, 0.4); --text-main: #f8fafc; --text-muted: #94a3b8; }
+        body { 
+            background-color: var(--bg-dark); 
+            color: var(--text-main); 
+            font-family: sans-serif; 
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            height: 100vh; text-align: center;
+            background-image: radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 60%);
+        }
+        .install-logo { width: 120px; height: 120px; border-radius: 25px; margin-bottom: 20px; box-shadow: 0 10px 30px rgba(6, 182, 212, 0.3); }
+        .install-title { font-size: 2.5rem; font-weight: 800; color: #fff; margin-bottom: 10px; letter-spacing: 1px; }
+        .install-desc { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 35px; max-width: 320px; line-height: 1.6; }
+        .btn-install { 
+            background: var(--primary); color: #000; font-weight: 800; 
+            padding: 18px 45px; border-radius: 50px; font-size: 1.2rem; 
+            box-shadow: 0 0 20px var(--primary-glow);
+            animation: pulseBtn 2s infinite; border: none; cursor: pointer;
+            display: flex; align-items: center; gap: 10px;
+        }
+        @keyframes pulseBtn { 0% { transform: scale(1); } 70% { transform: scale(1.05); } 100% { transform: scale(1); } }
+        .footer { position: absolute; bottom: 30px; color: var(--text-muted); font-size: 0.85rem; opacity: 0.7; }
+    </style>
+</head>
+<body>
+
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAQtXn2gmgLcg4A-wuYXv-lPw7mZ3KXSUcIFVFSDy0NNqqU8bSc5gVAoqE&s=10" class="install-logo">
+    <div class="install-title">G-ZONE</div>
+    <p class="install-desc">G-ZONE ইস্পোর্টস এ আপনাকে স্বাগতম! ফ্রি ফায়ার টুর্নামেন্ট খেলে টাকা ইনকাম করতে আমাদের অ্যাপটি ইন্সটল করুন।</p>
+    
+    <!-- This button triggers the Native Browser Popup -->
+    <button id="btn-install-app" class="btn-install">
+        <i class="fas fa-download"></i> অ্যাপ ইন্সটল করুন
+    </button>
+
+    <div class="footer">সুরক্ষিত এবং ভেরিফাইড • Version 2.0</div>
+
+    <script>
+        let deferredPrompt;
+        const installBtn = document.getElementById('btn-install-app');
+
+        // 1. Listen for the native install prompt
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log("Install prompt ready");
+        });
+
+        // 2. Handle button click
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                // Show the real native browser install dialog
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
+                deferredPrompt = null;
+            } else {
+                // If the browser hasn't triggered the prompt yet
+                alert("ইন্সটল করতে: ব্রাউজারের উপরে ৩টি ডট (⋮) এ ক্লিক করুন এবং 'Install App' বা 'Add to Home Screen' সিলেক্ট করুন।");
+            }
+        });
+
+        // 3. AUTO-REDIRECT: If they are already in the installed app, go to app.html
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+            window.location.href = 'app.html';
+        }
+    </script>
+</body>
+</html>
